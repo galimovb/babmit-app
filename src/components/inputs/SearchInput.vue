@@ -5,10 +5,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  size: {
-    type: Number,
-    required: true,
-  },
   modelValue: {
     type: String
   },
@@ -20,8 +16,8 @@ const props = defineProps({
       :value="modelValue"
       type="text"
       :placeholder="placeholder"
-      :style="{ width: `${size}px` }"
       class="bg-white dark:bg-gray-200 h-10 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+      :title="placeholder"
       @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>

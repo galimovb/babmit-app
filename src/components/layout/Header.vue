@@ -19,17 +19,18 @@ const photosSearch = () => {
 
 <template>
   <header
-      class="h-20 bg-primary"
+      class="h-20 py-5"
   >
     <div
-        class="p-5 flex justify-center items-center"
+        class="flex  items-center justify-center"
     >
       <div
-          class="flex gap-5 items-center mx-16"
+          class="flex gap-3 items-center mx-3 sm:mx-12"
       >
         <SearchInput
             v-model="searchQuery"
-            placeholder="Введите Id альбомов через пробел"
+            placeholder="Введите Id через пробел"
+            class="w-[220px] sm:w-[300px] md:w-[400px]"
             :size="400"
             :disabled="loading"
         />
@@ -42,14 +43,14 @@ const photosSearch = () => {
       </div>
       <SwitchRoot
           id="airplane-mode"
-          class="w-[42px] h-[25px] focus-within:outline focus-within:outline-blue-200 flex bg-blue-400 shadow-sm rounded-full relative data-[state=checked]:bg-blue-600 cursor-default"
+          class="w-[38px] h-[23px] sm:w-[42px] focus-within:outline focus-within:outline-blue-200 flex bg-blue-400 shadow-sm rounded-full relative data-[state=checked]:bg-blue-600 cursor-default"
           @click="themeStore.toggleTheme"
       >
         <SwitchThumb
-            class="block w-[21px] h-[21px] my-auto bg-white shadow-sm rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]"
+            class="block w-[17px] h-[19px] sm:w-[19px] sm:h-[21px] my-auto bg-white shadow-sm rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]"
         >
           <Moon
-              size="20"
+              class="w-[17px] h-[19px] sm:w-[19] sm:h-[21px]"
           />
         </SwitchThumb>
       </SwitchRoot>

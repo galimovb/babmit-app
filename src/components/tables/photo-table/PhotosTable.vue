@@ -49,7 +49,7 @@ onMounted(() => {
 
 <template>
   <div
-      class="mx-auto relative w-[600px] max-h-[600px] overflow-y-auto bg-white dark:bg-gray-800
+      class="mx-auto relative w-[300px] sm:w-[450px] md:w-[600px] max-h-[600px] overflow-y-auto bg-white dark:bg-gray-800
          border border-gray-200 dark:border-gray-600 rounded-md
          shadow-lg dark:shadow-[0px_4px_10px_rgba(255,255,255,0.1)]"
       ref="tableRef"
@@ -60,7 +60,7 @@ onMounted(() => {
         class="w-full bg-white"
     >
       <thead
-          class="bg-blue-300 dark:bg-blue-500 sticky top-0 z-10 shadow-md text-white text-base"
+          class="bg-blue-400 dark:bg-blue-500 sticky top-0 z-10 shadow-md text-white text-base"
       >
       <tr>
         <th

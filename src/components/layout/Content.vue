@@ -3,7 +3,9 @@ import PhotosTable from "../tables/photo-table/PhotosTable.vue";
 </script>
 
 <template>
-  <main>
+  <main
+    class=""
+  >
     <div
         class="m-3"
     >
