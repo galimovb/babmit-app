@@ -13,33 +13,33 @@ const truncateText = (text, length = 20) => {
 
 <template>
   <tr
-      class="h-14"
+      class="h-14 border-b"
   >
     <td
-        class="py-1 px-2 border-b"
+        class="py-1 px-2"
     >
       {{ photoItem.id }}
     </td>
     <td
-        class="py-1 px-2 border-b"
+        class="py-1 px-2"
     >
       {{ photoItem.albumId }}
     </td>
     <td
-        class="py-1 px-2 border-b"
         :title="photoItem.title"
+        class="py-1 px-2"
     >
       {{ truncateText(photoItem.title) }}
     </td>
     <td
-        class="py-1 px-2 border-b"
-        :title="photoItem.url"
+        :title="photoItem.title"
+        class="py-1 px-2"
     >
       {{ truncateText(photoItem.url) }}
     </td>
     <td
-        class="py-1 px-2 border-b"
-        :title="photoItem.thumbnailUrl"
+        :title="photoItem.title"
+        class="py-1 px-2"
     >
       {{ truncateText(photoItem.thumbnailUrl) }}
     </td>

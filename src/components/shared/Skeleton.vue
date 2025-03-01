@@ -14,8 +14,8 @@ defineProps({
 
 <template>
   <tr
-      v-for="index in rows"
-      :key="index"
+      v-for="row in rows"
+      :key="row"
       class="animate-pulse w-full"
   >
     <td

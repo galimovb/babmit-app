@@ -13,7 +13,7 @@ const themeStore = useThemeStore();
 const {searchQuery, loading} = storeToRefs(photosStore);
 
 const photosSearch = () => {
-  photosStore.getPhotosByAlbumId(searchQuery.value);
+  photosStore.getPhotosByAlbumId();
 };
 </script>
 
@@ -30,9 +30,9 @@ const photosSearch = () => {
         <SearchInput
             v-model="searchQuery"
             placeholder="Введите Id через пробел"
-            class="w-[220px] sm:w-[300px] md:w-[400px]"
             :size="400"
             :disabled="loading"
+            class="w-[220px] sm:w-[300px] md:w-[400px]"
         />
         <Button
             :disabled="loading"
@@ -43,15 +43,13 @@ const photosSearch = () => {
       </div>
       <SwitchRoot
           id="airplane-mode"
-          class="w-[38px] h-[23px] sm:w-[42px] focus-within:outline focus-within:outline-blue-200 flex bg-blue-400 shadow-sm rounded-full relative data-[state=checked]:bg-blue-600 cursor-default"
+          class="w-[38px] h-[23px] sm:w-[42px] focus-within:outline focus-within:outline-blue-200 flex bg-blue-400 shadow-sm rounded-full relative data-[state=checked]:bg-blue-600 cursor-pointer"
           @click="themeStore.toggleTheme"
       >
         <SwitchThumb
-            class="block w-[17px] h-[19px] sm:w-[19px] sm:h-[21px] my-auto bg-white shadow-sm rounded-full transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]"
+            class="block w-[19px] h-[19px] sm:w-[21px] sm:h-[21px] my-auto bg-white shadow-sm rounded-full transition-transform duration-150 translate-x-0 will-change-transform data-[state=checked]:translate-x-[19px] sm:data-[state=checked]:translate-x-[21px]"
         >
-          <Moon
-              class="w-[17px] h-[19px] sm:w-[19] sm:h-[21px]"
-          />
+          <Moon class="w-[19px] h-[19px] sm:w-[21px] sm:h-[21px] mx-auto my-auto" />
         </SwitchThumb>
       </SwitchRoot>
     </div>

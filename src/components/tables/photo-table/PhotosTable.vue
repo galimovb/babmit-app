@@ -72,9 +72,9 @@ onMounted(() => {
           <div
               class="flex gap-1 items-center"
           >
-              <span>
-                {{ headerItem.label }}
-              </span>
+                <span>
+                  {{ headerItem.label }}
+                </span>
             <div
                 v-if="sortKey === headerItem.key"
             >
@@ -93,16 +93,16 @@ onMounted(() => {
       </thead>
 
       <tbody>
-      <PhotosTableItem
-          v-for="(photo, index) in photos"
-          :key="photo.id"
-          :photo-item="photo"
-          :class="rowBgColorClass(index)"
-      />
-      <Skeleton
-          v-if="loading"
-          :columns="tableHeaderItems.length"
-      />
+        <PhotosTableItem
+            v-for="(photo, index) in photos"
+            :key="photo.id"
+            :photo-item="photo"
+            :class="rowBgColorClass(index)"
+        />
+        <Skeleton
+            v-if="loading"
+            :columns="tableHeaderItems.length"
+        />
       </tbody>
     </table>
   </div>
