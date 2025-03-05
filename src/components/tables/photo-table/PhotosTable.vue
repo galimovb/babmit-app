@@ -4,7 +4,7 @@ import {usePhotosStore} from '../../../stores/photo.js';
 import {storeToRefs} from 'pinia';
 import PhotosTableItem from "./item/PhotosTableItem.vue";
 import Skeleton from "../../shared/Skeleton.vue";
-import {MoveUp, MoveDown} from 'lucide-vue-next';
+import {MoveDown, MoveUp} from 'lucide-vue-next';
 import {colors, tableHeaderItems} from "../../../js/table.js";
 
 const photosStore = usePhotosStore();

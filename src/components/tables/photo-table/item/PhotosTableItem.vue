@@ -32,13 +32,13 @@ const truncateText = (text, length = 20) => {
       {{ truncateText(photoItem.title) }}
     </td>
     <td
-        :title="photoItem.title"
+        :title="photoItem.url"
         class="py-1 px-2"
     >
       {{ truncateText(photoItem.url) }}
     </td>
     <td
-        :title="photoItem.title"
+        :title="photoItem.thumbnailUrl"
         class="py-1 px-2"
     >
       {{ truncateText(photoItem.thumbnailUrl) }}

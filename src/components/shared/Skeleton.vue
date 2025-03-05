@@ -16,15 +16,15 @@ defineProps({
   <tr
       v-for="row in rows"
       :key="row"
-      class="animate-pulse w-full"
+      class="w-full bg-gray-100"
   >
     <td
         v-for="col in columns"
         :key="col"
-        class="py-2 px-4"
+        class="py-1 pl-[4px] pr-3"
     >
       <div
-          class="h-14 bg-gray-300 rounded w-full]"
+          class="h-14 bg-gray-300 animate-pulse rounded w-full"
       >
       </div>
     </td>
@@ -32,19 +32,5 @@ defineProps({
 </template>
 
 <style scoped>
-.animate-pulse {
-  animation: pulse 1.5s ease-in-out infinite;
-}
 
-@keyframes pulse {
-  0% {
-    background-color: #e2e8f0;
-  }
-  50% {
-    background-color: #cbd5e0;
-  }
-  100% {
-    background-color: #e2e8f0;
-  }
-}
 </style>
