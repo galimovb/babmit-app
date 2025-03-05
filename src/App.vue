@@ -1,11 +1,14 @@
 <script setup>
-import Header from "./components/layout/Header.vue";
-import Content from "./components/layout/Content.vue";
+import Sidebar from "@/components/ui/sidebar/Sidebar.vue";
+import SidebarProvider from "@/components/ui/sidebar/SidebarProvider.vue";
 </script>
 
 <template>
   <div class="bg-white dark:bg-gray-700 min-h-full">
-    <Header/>
+<!--    <SidebarProvider>
+      <Sidebar/>
+      <router-view/>
+    </SidebarProvider>-->
     <router-view/>
   </div>
 </template>

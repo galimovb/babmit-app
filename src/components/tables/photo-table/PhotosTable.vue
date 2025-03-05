@@ -1,11 +1,11 @@
 <script setup>
 import {onMounted, ref} from 'vue';
-import {usePhotosStore} from '../../../stores/photo.js';
+import {usePhotosStore} from '@/stores/photo.js';
 import {storeToRefs} from 'pinia';
 import PhotosTableItem from "./item/PhotosTableItem.vue";
 import Skeleton from "../../shared/Skeleton.vue";
 import {MoveDown, MoveUp} from 'lucide-vue-next';
-import {colors, tableHeaderItems} from "../../../js/table.js";
+import {rowBgColorClass, tableHeaderItems} from "@/js/table.js";
 
 const photosStore = usePhotosStore();
 const {photos, loading} = storeToRefs(photosStore);
@@ -13,10 +13,6 @@ const {photos, loading} = storeToRefs(photosStore);
 const tableRef = ref(null);
 const sortKey = ref('id');
 const sortOrder = ref('asc');
-
-const rowBgColorClass = (index) => {
-  return colors[index % colors.length];
-};
 
 const handleTableScroll = () => {
   if (!tableRef.value || loading.value) return;
@@ -44,6 +40,7 @@ const sortTable = (key) => {
 
 onMounted(() => {
   photosStore.getPhotos();
+
 });
 </script>
 

@@ -21,7 +21,7 @@ export const usePhotosStore = defineStore("photos", () => {
 
         loading.value = true;
         try {
-            const photoLimit = 30 //currentPage.value === 1 ? 30 :20;
+            const photoLimit = 30; //currentPage.value === 1 ? 30 :20;
             const response = await PhotosApi.getPhotos(searchAlbumIds.value, currentPage.value, photoLimit);
             const newPhotos = response.data || [];
 
