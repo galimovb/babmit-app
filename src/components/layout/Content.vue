@@ -1,6 +1,4 @@
-<script setup>
-import PhotosTable from "../tables/photo-table/PhotosTable.vue";
-</script>
+<script setup></script>
 
 <template>
   <main
@@ -9,7 +7,7 @@ import PhotosTable from "../tables/photo-table/PhotosTable.vue";
     <div
         class="m-3"
     >
-      <PhotosTable/>
+      <slot/>
     </div>
   </main>
 </template>

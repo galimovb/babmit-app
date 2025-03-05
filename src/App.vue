@@ -6,7 +6,7 @@ import Content from "./components/layout/Content.vue";
 <template>
   <div class="bg-white dark:bg-gray-700 min-h-full">
     <Header/>
-    <Content/>
+    <router-view/>
   </div>
 </template>
 
