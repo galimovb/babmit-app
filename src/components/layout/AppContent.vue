@@ -4,7 +4,7 @@ import SidebarTrigger from "@/components/ui/sidebar/SidebarTrigger.vue";
 
 <template>
   <main
-      class="w-full relative"
+      class="w-full relative flex-1 min-w-0"
   >
     <SidebarTrigger
         class="absolute"

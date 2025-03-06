@@ -16,7 +16,7 @@ defineProps({
   <tr
       v-for="row in rows"
       :key="row"
-      class="w-full bg-gray-100"
+      class="w-full bg-gray-100 dark:bg-gray-400"
   >
     <td
         v-for="col in columns"
@@ -24,7 +24,7 @@ defineProps({
         class="py-1 pl-[4px] pr-3"
     >
       <div
-          class="h-14 bg-gray-300 animate-pulse rounded w-full"
+          class="h-14 bg-gray-300 dark:bg-gray-500 animate-pulse rounded w-full"
       >
       </div>
     </td>

@@ -11,7 +11,7 @@ const {idFrom, idTo, leadsLoading} = storeToRefs(leadsStore);
 
 <template>
   <div
-      class="py-2"
+      class="mt-4 py-2"
   >
     <div
         class="flex items-center justify-between"
@@ -42,16 +42,14 @@ const {idFrom, idTo, leadsLoading} = storeToRefs(leadsStore);
               :disabled="leadsLoading"
               type="number"
               placeholder="Id от"
-              :min="idFrom"
-              :max="idTo"
-              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400  dark:outline-none h-10 focus:ring-2 focus:border-none"
+              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400  dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
           />
           <Input
               v-model="idTo"
               :disabled="leadsLoading"
               type="number"
               placeholder="Id до"
-              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400  dark:outline-none h-10 focus:ring-2 focus:border-none"
+              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400  dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
           />
         </div>
       </div>

@@ -33,7 +33,7 @@ const sortTable = (key, type) => {
     if (type === "datetime") {
       valA = new Date(valA).getTime() || 0;
       valB = new Date(valB).getTime() || 0;
-    } else if (type === "integer" || type === "float") {
+    } else if (type === "integer" || type === "float" || type === "user") {
       valA = parseFloat(valA) || 0;
       valB = parseFloat(valB) || 0;
     }
@@ -52,11 +52,15 @@ onMounted(() => {
 
 <template>
   <div
-      class="mx-auto relative max-h-[580px] overflow-y-auto
-           border border-gray-200 dark:border-gray-600 rounded-md"
+      class="mx-auto relative max-h-[580px] overflow-y-auto dark:border-gray-600 rounded-md"
   >
-    <Loader v-if="fieldsLoading && leadsLoading"/>
-    <Table v-else class="w-full bg-white">
+    <Loader
+        v-if="fieldsLoading && leadsLoading"
+    />
+    <Table
+        v-else
+        class="w-full bg-white"
+    >
       <TableHeader
           class="bg-blue-400 dark:bg-blue-500 sticky top-0 z-10 shadow-md text-white text-base"
       >
@@ -69,13 +73,23 @@ onMounted(() => {
               @mouseleave="isHoveredColumn = null"
               @click="sortTable(field.name, field.type)"
           >
-            <div class="flex gap-1 items-center">
+            <div
+                class="flex gap-1 items-center"
+            >
               <span>
                 {{ field.name }}
               </span>
-              <div v-if="sortKey === field.name || isHoveredColumn === field.name">
-                <MoveUp v-if="sortOrder === 'asc'" size="16"/>
-                <MoveDown v-else size="16"/>
+              <div
+                  v-if="sortKey === field.name || isHoveredColumn === field.name"
+              >
+                <MoveUp
+                    v-if="sortOrder === 'asc'"
+                    size="16"
+                />
+                <MoveDown
+                    v-else
+                    size="16"
+                />
               </div>
             </div>
           </TableHead>

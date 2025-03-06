@@ -7,11 +7,8 @@ import AppSidebar from "@/components/layout/AppSidebar.vue";
   <div class="bg-white dark:bg-gray-700 min-h-full max-w-full">
     <SidebarProvider>
       <AppSidebar/>
-      <router-view
-          class="flex-1 min-w-0"
-      />
+      <RouterView/>
     </SidebarProvider>
-    >
   </div>
 </template>
 

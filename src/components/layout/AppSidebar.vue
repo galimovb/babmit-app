@@ -68,8 +68,8 @@ const themeStore = useThemeStore();
               >
                 <router-link
                     :to="item.url"
-                    class="flex items-center gap-2 py-2 px-1 hover:bg-gray-300 dark:bg-gray-700 "
-                    active-class="bg-gray-200 dark:bg-blue-600"
+                    class="flex items-center gap-2 py-2 px-1 hover:bg-gray-300 dark:hover:bg-gray-600"
+                    active-class="bg-gray-200 dark:bg-blue-500"
                 >
                   <component
                       :is="item.icon"
