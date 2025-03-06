@@ -2,17 +2,16 @@
 import {onMounted, ref} from "vue";
 import {useLeadsStore} from "@/stores/leads.js";
 import {storeToRefs} from "pinia";
-import {formatFieldValue, rowBgColorClass} from "@/js/table.js";
+import {formatFieldValue} from "@/js/table.js";
 import {MoveDown, MoveUp} from "lucide-vue-next";
 import Loader from "@/components/shared/Loader.vue";
-import TableHead from "@/components/ui/table/TableHead.vue";
 import TableRow from "@/components/ui/table/TableRow.vue";
 import TableCell from "@/components/ui/table/TableCell.vue";
 import TableBody from "@/components/ui/table/TableBody.vue";
 import TableHeader from "@/components/ui/table/TableHeader.vue";
 
 const leadStore = useLeadsStore();
-const {fields, leads, leadsLoading, fieldsLoading} = storeToRefs(leadStore);
+const { fields, leads, leadsLoading, fieldsLoading } = storeToRefs(leadStore);
 
 const sortKey = ref("ID");
 const sortOrder = ref("asc");
@@ -52,35 +51,36 @@ onMounted(() => {
 
 <template>
   <div
-      class="mx-auto relative max-h-[580px] overflow-y-auto dark:border-gray-600 rounded-md"
+      class="mx-auto relative max-h-[800px] overflow-y-auto dark:border-gray-600 rounded-md"
   >
     <Loader
         v-if="fieldsLoading && leadsLoading"
     />
     <Table
         v-else
-        class="w-full bg-white"
+        class="w-full  bg-blue-400"
     >
       <TableHeader
           class="bg-blue-400 dark:bg-blue-500 sticky top-0 z-10 shadow-md text-white text-base"
       >
         <TableRow>
-          <TableHead
+          <TableCell
               v-for="(field, key) in fields"
               :key="key"
-              class="py-2 px-2 border-b text-left cursor-pointer hover:bg-blue-600 text-white"
+              class="py-2 px-2 border-b text-left cursor-pointer text-white hover:text-gray-300 dark:hover:text-gray-200"
               @mouseover="isHoveredColumn = field.name"
               @mouseleave="isHoveredColumn = null"
               @click="sortTable(field.name, field.type)"
           >
             <div
-                class="flex gap-1 items-center"
+                class="flex gap-1 items-center min-w-[170px]"
             >
               <span>
-                {{ field.name }}
+                {{ field.title }}
               </span>
               <div
                   v-if="sortKey === field.name || isHoveredColumn === field.name"
+                  class=""
               >
                 <MoveUp
                     v-if="sortOrder === 'asc'"
@@ -92,7 +92,7 @@ onMounted(() => {
                 />
               </div>
             </div>
-          </TableHead>
+          </TableCell>
         </TableRow>
       </TableHeader>
 
@@ -100,8 +100,7 @@ onMounted(() => {
         <TableRow
             v-for="(lead, key) in leads"
             :key="lead.ID"
-            :class="rowBgColorClass(key)"
-            class="h-14 border-b text-black"
+            class="h-14 border-b text-black bg-blue-50 hover:bg-blue-200"
         >
           <TableCell
               v-for="(field, key) in fields"

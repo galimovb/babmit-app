@@ -62,15 +62,16 @@ onMounted(() => {
           <th
               v-for="headerItem in tableHeaderItems"
               :key="headerItem.key"
-              class="py-2 px-2 border-b text-left cursor-pointer hover:bg-blue-600"
+              class="py-2 px-2 border-b text-left cursor-pointer"
               @mouseover="isHoveredColumn = headerItem.key"
               @mouseleave="isHoveredColumn = null"
               @click="sortTable(headerItem.key)"
           >
             <div
-                class="flex gap-1 items-center"
+                class="flex gap-1 items-center min-w-[100px] hover:text-gray-400"
             >
-              <span>
+              <span
+              >
                 {{ headerItem.label }}
               </span>
 

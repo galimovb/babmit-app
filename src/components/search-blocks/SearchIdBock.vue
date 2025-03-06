@@ -6,7 +6,11 @@ import {ListFilter} from 'lucide-vue-next';
 
 const leadsStore = useLeadsStore();
 
-const {idFrom, idTo, leadsLoading} = storeToRefs(leadsStore);
+const {idFrom, idTo, leadsLoading } = storeToRefs(leadsStore);
+const getLeadsByFilter = () => {
+  leadsStore.getLeads();
+};
+
 </script>
 
 <template>
@@ -42,15 +46,20 @@ const {idFrom, idTo, leadsLoading} = storeToRefs(leadsStore);
               :disabled="leadsLoading"
               type="number"
               placeholder="Id от"
-              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400  dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
+              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400 dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
+              @blur="getLeadsByFilter"
+              @keydown.enter="getLeadsByFilter"
           />
           <Input
               v-model="idTo"
               :disabled="leadsLoading"
               type="number"
               placeholder="Id до"
-              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400  dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
+              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400 dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
+              @blur="getLeadsByFilter"
+              @keydown.enter="getLeadsByFilter"
           />
+
         </div>
       </div>
     </div>

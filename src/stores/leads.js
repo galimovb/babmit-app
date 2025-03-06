@@ -69,9 +69,9 @@ export const useLeadsStore = defineStore("leads", () => {
         }
     };
 
-    watch([idFrom, idTo], () => {
-       getLeads();
-    });
+    const getLeadsByFilter = () => {
+        getLeads();
+    }
 
-    return { fields, leads, leadsLoading, fieldsLoading, idFrom, idTo, needFields, getFields, getLeads };
+    return { fields, leads, leadsLoading, fieldsLoading, idFrom, idTo, needFields, getFields, getLeads, getLeadsByFilter };
 });
