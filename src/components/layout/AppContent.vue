@@ -1,13 +1,14 @@
 <script setup>
 import SidebarTrigger from "@/components/ui/sidebar/SidebarTrigger.vue";
-import Header from "@/components/search-blocks/SearchAlbumBlock.vue";
 </script>
 
 <template>
   <main
-    class="w-full"
+      class="w-full relative"
   >
-<!--    <SidebarTrigger/>-->
+    <SidebarTrigger
+        class="absolute"
+    />
     <div
         class="m-3"
     >

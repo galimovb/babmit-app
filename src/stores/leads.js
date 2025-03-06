@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import {ref, watch} from "vue";
 import leadApi from "@/api/leadApi.js";
 
-export const useLeadsStore = defineStore("leads", (needFilds) => {
+export const useLeadsStore = defineStore("leads", () => {
     // Поля, которые нужно отобразить в правильном порядке
     const needFields = [
         { name: "ID" },

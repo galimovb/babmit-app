@@ -1,7 +1,4 @@
 <script setup>
-
-import {truncateText} from "@/js/table.js";
-
 const props = defineProps({
   photoItem: {
     type: Object,
@@ -13,14 +10,18 @@ const keys = ['id', 'albumId', 'title', 'url', 'thumbnailUrl'];
 </script>
 
 <template>
-  <tr class="h-14 border-b">
+  <tr class="h-14 border-b text-black ">
     <td
         v-for="key in keys"
         :key="key"
         :title="(photoItem[key])"
         class="py-1 px-2"
     >
-      {{ truncateText(photoItem[key]) }}
+      <div
+          class="max-w-[150px] truncate"
+      >
+        {{ photoItem[key] }}
+      </div>
     </td>
   </tr>
 </template>

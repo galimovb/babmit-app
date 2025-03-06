@@ -21,7 +21,7 @@ export const rowBgColorClass = (index) => {
 };
 
 export const formatFieldValue = (value, type) => {
-        if (!value) return '-'
+        if (!value) return ''
 
         if (value && type === "datetime") {
             const date = new Date(value);
@@ -31,14 +31,8 @@ export const formatFieldValue = (value, type) => {
             const year = date.getFullYear();
 
             return `${day}-${month}-${year}`;
-
-        } else if (value.length > 20) {
-            return truncateText(value)
         }
         return value;
     }
 ;
-export const truncateText = (text, length = 20) => {
-    return text.length > length ? `${text.slice(0, length)}...` : text;
-};
 
