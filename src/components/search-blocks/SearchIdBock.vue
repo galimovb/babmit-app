@@ -7,9 +7,6 @@ import {ListFilter} from 'lucide-vue-next';
 const leadsStore = useLeadsStore();
 
 const {idFrom, idTo, leadsLoading } = storeToRefs(leadsStore);
-const getLeadsByFilter = () => {
-  leadsStore.getLeads();
-};
 
 </script>
 
@@ -26,7 +23,7 @@ const getLeadsByFilter = () => {
         Отчет по лидам
       </h1>
       <div
-          class="flex gap-3 items-center mx-3"
+          class="flex items-center justify-between mx-2"
       >
         <div
             class="flex items-center"
@@ -46,18 +43,18 @@ const getLeadsByFilter = () => {
               :disabled="leadsLoading"
               type="number"
               placeholder="Id от"
-              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400 dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
-              @blur="getLeadsByFilter"
-              @keydown.enter="getLeadsByFilter"
+              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400 dark:outline-none h-10 focus:ring-2 focus:outline-none focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
+              @blur="leadsStore.getLeadsByFilter"
+              @keydown.enter="leadsStore.getLeadsByFilter"
           />
           <Input
               v-model="idTo"
               :disabled="leadsLoading"
               type="number"
               placeholder="Id до"
-              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400 dark:outline-none h-10 focus:ring-2 focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
-              @blur="getLeadsByFilter"
-              @keydown.enter="getLeadsByFilter"
+              class="text-black bg-white dark:bg-gray-500 dark:border-b dark:border-gray-800 dark:text-gray-400 dark:outline-none h-10 focus:ring-2 focus:outline-none focus:border-none dark:focus:bg-gray-400 dark:focus:text-gray-700"
+              @blur="leadsStore.getLeadsByFilter"
+              @keydown.enter="leadsStore.getLeadsByFilter"
           />
 
         </div>

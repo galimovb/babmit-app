@@ -8,7 +8,6 @@ export const colors =
     ];
 
 
-
 export const tableHeaderItems = [
     {key: 'id', label: 'Ид'},
     {key: 'albumId', label: 'Альбом'},
@@ -21,19 +20,18 @@ export const rowBgColorClass = (index) => {
     return colors[index % colors.length];
 };
 
-export const formatFieldValue = (value, type) => {
-        if (!value) return ''
+export const formatFieldValue = value => {
+    if (value) {
+        const date = new Date(value);
 
-        if (value && type === "datetime") {
-            const date = new Date(value);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
 
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-
-            return `${day}-${month}-${year}`;
+        return `${day}-${month}-${year}`;
+        } else {
+            return ''
         }
-        return value;
     }
 ;
 

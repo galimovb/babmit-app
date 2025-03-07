@@ -11,7 +11,14 @@ import TableBody from "@/components/ui/table/TableBody.vue";
 import TableHeader from "@/components/ui/table/TableHeader.vue";
 
 const leadStore = useLeadsStore();
-const { fields, leads, leadsLoading, fieldsLoading } = storeToRefs(leadStore);
+const {  leadsLoading, fieldsLoading } = storeToRefs(leadStore);
+const BX = leadStore.BX;
+
+const SEMANTIC_ID = {
+  P : "В работе",
+  F : "Провален",
+  S : "Успешно",
+};
 
 const sortKey = ref("ID");
 const sortOrder = ref("asc");
@@ -25,7 +32,7 @@ const sortTable = (key, type) => {
     sortOrder.value = "asc";
   }
 
-  leads.value.sort((a, b) => {
+  BX.leads.sort((a, b) => {
     let valA = a[sortKey.value];
     let valB = b[sortKey.value];
 
@@ -44,17 +51,19 @@ const sortTable = (key, type) => {
 };
 
 onMounted(() => {
-  leadStore.getFields();
   leadStore.getLeads();
+  leadStore.getFields();
+  leadStore.getStatuses();
+  leadStore.getSources();
 });
 </script>
 
 <template>
   <div
-      class="mx-auto relative max-h-[800px] overflow-y-auto dark:border-gray-600 rounded-md"
+      class="mx-auto relative max-h-[800px] overflow-y-auto dark:border-gray-600 rounded-md scrollbar-thin"
   >
     <Loader
-        v-if="fieldsLoading && leadsLoading"
+        v-if="fieldsLoading || leadsLoading"
     />
     <Table
         v-else
@@ -65,12 +74,12 @@ onMounted(() => {
       >
         <TableRow>
           <TableCell
-              v-for="(field, key) in fields"
+              v-for="(field, key) in BX.leadFields"
               :key="key"
               class="py-2 px-2 border-b text-left cursor-pointer text-white hover:text-gray-300 dark:hover:text-gray-200"
-              @mouseover="isHoveredColumn = field.name"
+              @mouseover="isHoveredColumn = key"
               @mouseleave="isHoveredColumn = null"
-              @click="sortTable(field.name, field.type)"
+              @click="sortTable(key, field.type)"
           >
             <div
                 class="flex gap-1 items-center min-w-[170px]"
@@ -79,7 +88,7 @@ onMounted(() => {
                 {{ field.title }}
               </span>
               <div
-                  v-if="sortKey === field.name || isHoveredColumn === field.name"
+                  v-if="sortKey === key || isHoveredColumn === key"
                   class=""
               >
                 <MoveUp
@@ -98,24 +107,151 @@ onMounted(() => {
 
       <TableBody>
         <TableRow
-            v-for="(lead, key) in leads"
+            v-for="lead in BX.leads"
             :key="lead.ID"
             class="h-14 border-b text-black bg-blue-50 hover:bg-blue-200"
         >
           <TableCell
-              v-for="(field, key) in fields"
-              :key="key"
-              :title="lead[field.name]"
               class="py-1 px-2"
           >
             <div
                 class="max-w-[150px] truncate"
             >
-              {{ formatFieldValue(lead[field.name], field.type) }}
+              {{ lead.ID }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.TITLE"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ lead.TITLE }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.TITLE"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ lead.CREATED_BY_ID }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.TITLE"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ formatFieldValue(lead.DATE_CREATE) }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.SOURCE_ID"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ BX.leadSources[lead.SOURCE_ID].NAME }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="BX.leadStatuses[lead.STATUS_ID].NAME"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ BX.leadStatuses[lead.STATUS_ID].NAME }}
+            </div>
+          </TableCell>
+          <TableCell
+              :title="lead.STATUS_SEMANTIC_ID"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ SEMANTIC_ID[lead.STATUS_SEMANTIC_ID] }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.ASSIGNED_BY_ID"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ lead.ASSIGNED_BY_ID }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.DATE_CLOSED"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ formatFieldValue(lead.DATE_CLOSED) }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.OPPORTUNITY"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ lead.OPPORTUNITY }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.CURRENCY_ID"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ lead.CURRENCY_ID }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.UTM_SOURCE"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ lead.UTM_SOURCE }}
+            </div>
+          </TableCell>
+
+          <TableCell
+              :title="lead.SOURCE_DESCRIPTION"
+              class="py-1 px-2"
+          >
+            <div
+                class="max-w-[150px] truncate"
+            >
+              {{ lead.SOURCE_DESCRIPTION }}
             </div>
           </TableCell>
         </TableRow>
-
       </TableBody>
     </Table>
   </div>

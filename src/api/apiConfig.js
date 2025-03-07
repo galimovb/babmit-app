@@ -2,6 +2,10 @@ export const  FIELDS_API_URL = 'https://dveri-bambit.bitrix24.ru/rest/80/9uwfqpx
 export const TABLE_API_URL = 'https://jsonplaceholder.typicode.com';
 
 export const LEADS_API_URL = 'https://dveri-bambit.bitrix24.ru/rest/80/owek0rroksj03sg5/crm.lead.list.json';
+
+export const STATUS_API_URL = 'https://dveri-bambit.bitrix24.ru/rest/80/94xsxq9qxbd1vh7f/crm.status.list.json?filter[ENTITY_ID]=STATUS';
+
+export const SOURCES_API_URL = 'https://dveri-bambit.bitrix24.ru/rest/80/94xsxq9qxbd1vh7f/crm.status.list.json?filter[ENTITY_ID]=SOURCE';
 export const getLeadsByFilterApiUrl = (idFrom, idTo) => {
     const filters = `?filter[%3EID]=${idFrom}&filter[%3CID]=${idTo}`;
     const selects = '&select[0]=STATUS_SEMANTIC_ID&select[1]=SOURCE_DESCRIPTION&select[2]=ASSIGNED_BY_ID&select[3]=CREATED_BY_ID&select[4]=CURRENCY_ID&select[5]=DATE_CLOSED' +

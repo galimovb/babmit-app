@@ -85,3 +85,31 @@ html, body,#app{
     @apply bg-background text-foreground;
     }
 }
+
+@layer utilities {
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background: theme('colors.gray.200'); /* Фон трека */
+        border-radius: 10px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background: theme('colors.gray.500'); /* Цвет ползунка */
+        border-radius: 10px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background: theme('colors.gray.700'); /* Цвет при наведении */
+    }
+
+    /* Для Firefox */
+    .scrollbar-thin {
+        scrollbar-width: thin;
+        scrollbar-color: theme('colors.gray.500') theme('colors.gray.200');
+    }
+}
+

@@ -1,5 +1,5 @@
 import AxiosWrapper from "@/api/AxiosWrapper.js";
-import {FIELDS_API_URL, getLeadsByFilterApiUrl} from "@/api/apiConfig.js";
+import {FIELDS_API_URL, getLeadsByFilterApiUrl, SOURCES_API_URL, STATUS_API_URL} from "@/api/apiConfig.js";
 
 
 export default class LeadApi extends AxiosWrapper{
@@ -10,5 +10,13 @@ export default class LeadApi extends AxiosWrapper{
     static getLeads(idFrom, idTo, sorted = "") {
         const url = getLeadsByFilterApiUrl(idFrom, idTo);
         return this.get(url + sorted);
+    }
+
+    static getStatus() {
+        return this.get(STATUS_API_URL);
+    }
+
+    static getSources() {
+        return this.get(SOURCES_API_URL);
     }
 }
