@@ -29,9 +29,6 @@ export const useLeadsStore = defineStore("leads", () => {
     const prevIdFrom = ref(idFrom.value); // Храним предыдущее значение
     const prevIdTo = ref(idTo.value);
 
-    const fields = ref({});
-    const leads = ref([]);
-
     //все данные битрикса
     const BX = reactive({
         leadStatuses: {},
@@ -48,18 +45,16 @@ export const useLeadsStore = defineStore("leads", () => {
             const response = await leadApi.getFields();
             const respFields = response.data.result;
 
-            BX.leadFields = Object.keys(needFields)
-                .reduce((acc, fieldKey) => {
-                    const fieldData = respFields[fieldKey];
-                    if (fieldData) {
-                        acc[fieldKey] = {
-                            title: fieldData.title,
-                            type: fieldData.type,
-                        };
-                    }
-                    return acc;
-                }, {});
-
+            BX.leadFields = Object.keys(needFields).reduce((acc, fieldKey) => {
+                const fieldData = respFields[fieldKey];
+                if (fieldData) {
+                    acc[fieldKey] = {
+                        title: fieldData.title,
+                        type: fieldData.type,
+                    };
+                }
+                return acc;
+            }, {});
         } catch (err) {
             console.warn(err);
         } finally {
@@ -117,7 +112,7 @@ export const useLeadsStore = defineStore("leads", () => {
 
 
     return {
-        fields, leads, leadsLoading, fieldsLoading,
+        leadsLoading, fieldsLoading,
         idFrom, idTo, needFields, BX,
         getFields, getLeads, getLeadsByFilter, getStatuses, getSources
     };

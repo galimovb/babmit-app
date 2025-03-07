@@ -36,14 +36,16 @@ const sortTable = (key, type) => {
     let valA = a[sortKey.value];
     let valB = b[sortKey.value];
 
-    if (type === "datetime") {
+    if (type === "datetime" || type === "date") {
       valA = new Date(valA).getTime() || 0;
       valB = new Date(valB).getTime() || 0;
     } else if (type === "integer" || type === "float" || type === "user") {
       valA = parseFloat(valA) || 0;
       valB = parseFloat(valB) || 0;
+    } else {
+      valA = String(valA).replace(/\s+/g, '');
+      valB = String(valB).replace(/\s+/g, '');
     }
-
     if (valA < valB) return sortOrder.value === "asc" ? -1 : 1;
     if (valA > valB) return sortOrder.value === "asc" ? 1 : -1;
     return 0;
@@ -85,7 +87,7 @@ onMounted(() => {
                 class="flex gap-1 items-center min-w-[170px]"
             >
               <span>
-                {{ field.title }}
+                {{ key }}
               </span>
               <div
                   v-if="sortKey === key || isHoveredColumn === key"
