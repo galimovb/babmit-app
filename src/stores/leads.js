@@ -34,6 +34,7 @@ export const useLeadsStore = defineStore("leads", () => {
         leadStatuses: {},
         leadFields: {},
         leadSources: {},
+        users:{},
         leads: [],
 
     });
@@ -101,6 +102,20 @@ export const useLeadsStore = defineStore("leads", () => {
         }
     };
 
+    const getUsers = async () => {
+        try {
+            const response = await leadApi.getUsers();
+            const respData = response.data.result;
+
+            respData.forEach((el) => {
+                BX.users[el.ID] = el;
+            });
+            console.log(BX.users)
+        } catch (err) {
+            console.warn(err);
+        }
+    }
+
 
     const getLeadsByFilter = () => {
         if (idFrom.value !== prevIdFrom.value || idTo.value !== prevIdTo.value) {  // Проверяем, изменились ли idFrom или idTo
@@ -114,6 +129,6 @@ export const useLeadsStore = defineStore("leads", () => {
     return {
         leadsLoading, fieldsLoading,
         idFrom, idTo, needFields, BX,
-        getFields, getLeads, getLeadsByFilter, getStatuses, getSources
+        getFields, getLeads, getLeadsByFilter, getStatuses, getSources, getUsers
     };
 });

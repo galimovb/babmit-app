@@ -57,6 +57,7 @@ onMounted(() => {
   leadStore.getFields();
   leadStore.getStatuses();
   leadStore.getSources();
+  leadStore.getUsers();
 });
 </script>
 
@@ -87,7 +88,7 @@ onMounted(() => {
                 class="flex gap-1 items-center min-w-[170px]"
             >
               <span>
-                {{ key }}
+                {{ field.title }}
               </span>
               <div
                   v-if="sortKey === key || isHoveredColumn === key"
@@ -135,13 +136,13 @@ onMounted(() => {
           </TableCell>
 
           <TableCell
-              :title="lead.TITLE"
+              :title="lead.CREATED_BY_ID"
               class="py-1 px-2"
           >
             <div
                 class="max-w-[150px] truncate"
             >
-              {{ lead.CREATED_BY_ID }}
+              {{ BX.users[lead.CREATED_BY_ID].EMAIL }}
             </div>
           </TableCell>
 
