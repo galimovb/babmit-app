@@ -52,6 +52,13 @@ const sortTable = (key, type) => {
   });
 };
 
+const getUserData = (user) => {
+  if(!user.EMAIL){
+    return `${user.NAME} ${user.LAST_NAME}`
+  }
+  return user.EMAIL;
+}
+
 onMounted(() => {
   leadStore.getLeads();
   leadStore.getFields();
@@ -142,12 +149,12 @@ onMounted(() => {
             <div
                 class="max-w-[150px] truncate"
             >
-              {{ BX.users[lead.CREATED_BY_ID].EMAIL }}
+              {{ getUserData(BX.users[lead.CREATED_BY_ID])  }}
             </div>
           </TableCell>
 
           <TableCell
-              :title="lead.TITLE"
+              :title="formatFieldValue(lead.DATE_CREATE)"
               class="py-1 px-2"
           >
             <div
